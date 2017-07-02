@@ -1,0 +1,41 @@
+@import "../../styles/mixins";
+
+:host {
+  @extend %xo-screen;
+
+  height: calc(100% - #{$xo-header-height});
+
+  .row {
+    @extend %flexbox;
+    width: 100%;
+
+    & > *:not(.v-divider) {
+      @include flex(1, 1, 0);
+    }
+  }
+
+  .col {
+    @extend %flexbox;
+    @include flex-direction(column);
+    width: 100%;
+
+    & > *:not(.h-divider) {
+      @include flex(1, 1, 0);
+    }
+  }
+
+  .xo-card-content {
+    @extend %flexbox;
+    @include flex-direction(column);
+  }
+
+  .h-divider {
+    @include flex(0, 0, auto);
+    height: 0.5rem;
+  }
+
+  .v-divider {
+    @include flex(0, 0, auto);
+    width: 0.5rem;
+  }
+}

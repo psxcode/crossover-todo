@@ -1,0 +1,153 @@
+@import 'mixins';
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0.2rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.2rem;
+  background: #444;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #444;
+}
+
+.slide-from-middle {
+  position: absolute;
+  width: 100%;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-from-left {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(-200rem);
+}
+
+.slide-from-right {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(200rem)
+}
+
+.slide-to-middle {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1s, opacity 0.4s;
+}
+
+.slide-to-left {
+  opacity: 0;
+  transform: translateX(-200vh);
+  transition: all 1s, opacity 0.4s;
+}
+
+.slide-to-right {
+  opacity: 0;
+  transform: translateX(200vh);
+  transition: all 1s, opacity 0.4s;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg)
+  }
+}
+
+.loader {
+  position: absolute;
+  width: 3rem;
+  left: 50%;
+  top: 50%;
+  animation: rotate 2s linear infinite;
+}
+
+* {
+  box-sizing: border-box;
+
+  /* flexbox likes this */
+  min-width: 0;
+  min-height: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: $xo-background-color;
+}
+
+input {
+  border: solid thin $xo-divider-color;
+}
+
+.xo-card {
+  @extend %xo-card;
+}
+
+.xo-card-header {
+  @extend %xo-card-header;
+
+  > * {
+    @include flex(1, 1, 0);
+  }
+
+  > .title {
+    @extend %xo-card-title;
+  }
+}
+
+.xo-card-footer {
+  @extend %xo-card-footer;
+
+  > * {
+    @include flex(1, 1, 0);
+  }
+
+  > .title {
+    @extend %xo-card-title;
+  }
+}
+
+.xo-card-content {
+  @extend %xo-card-content;
+}
+
+.xo-loading-spinner {
+  @extend %xo-loading-spinner;
+
+  background-color: $xo-spinner-backdrop-color;
+
+  /* initial opacity, changes to 1 on debounceTime */
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  i {
+    @extend %xo-loading-spinner-icon;
+  }
+}
+
+.xo-app-loading-spinner {
+  @extend %xo-loading-spinner;
+
+  background-color: $xo-spinner-backdrop-color;
+
+  &:after {
+    @extend %xo-loading-spinner-icon;
+    content: '';
+  }
+}

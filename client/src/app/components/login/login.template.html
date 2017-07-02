@@ -1,0 +1,18 @@
+<div class="star_logo"></div>
+<div class="container">
+    <form role="form" (submit)="login($event, username.value, password.value)">
+        <div class="message"></div>
+        <div class="element">
+            <div class="credential_label">Login</div>
+            <input id="username" class="credential" type="text" #username placeholder="USERNAME" autocomplete="off">
+        </div>
+        <div class="element">
+            <div class="credential_label">Password</div>
+            <input id="password" class="credential" type="password" #password placeholder="PASSWORD" autocomplete="off">
+        </div>
+        <button type="submit" class="button">Login</button>
+        <div [ngClass]="{'error-message': !!(message$ | async)}" class="error">
+            {{message | async}}
+        </div>
+    </form>
+</div>

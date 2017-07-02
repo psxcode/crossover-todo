@@ -1,0 +1,83 @@
+@import 'variables';
+@import 'flex';
+
+%xo-screen {
+  @extend %flexbox;
+  height: calc(100% - #{$xo-header-height});
+  padding: $xo-card-padding-distance;
+}
+
+%xo-card {
+  @extend %flexbox;
+  @include flex-direction(column);
+  @include flex(1, 1, 0);
+  position: relative;
+
+  padding: 0.2rem 1.2rem;
+  border-radius: 2px;
+  box-shadow: $xo-card-box-shadow;
+
+  color: $xo-text-color;
+  background-color: $xo-card-background-color;
+
+  > * {
+    flex: 1 1 0;
+  }
+}
+
+%xo-card-header {
+  @extend %flexbox;
+  @include align-items(center);
+  @include flex(0, 0, auto);
+  border-bottom: thin solid $xo-card-divider-color;
+  font-size: 1rem;
+  height: 2.5rem;
+}
+
+%xo-card-footer {
+  @extend %flexbox;
+  @include align-items(center);
+  @include flex(0, 0, auto);
+  border-top: thin solid $xo-card-divider-color;
+  font-size: 1rem;
+  height: 2.5rem;
+}
+
+%xo-card-title {
+  display: inline-block;
+  @include flex(1, 1, 0);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+%xo-card-content {
+  @include flex(1, 1, 0);
+  margin: 1em 0;
+}
+
+%xo-loading-spinner-icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: $xo-spinner-size;
+  height: $xo-spinner-size;
+  margin: auto;
+  border: $xo-spinner-border-width solid $xo-spinner-secondary-color;
+  border-top-color: $xo-spinner-primary-color;
+  border-radius: 50%;
+  animation: rotate $xo-spinner-duration infinite linear;
+}
+
+%xo-loading-spinner {
+  display: block;
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

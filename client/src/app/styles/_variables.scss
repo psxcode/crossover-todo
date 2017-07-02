@@ -1,0 +1,40 @@
+$xo-font-context: 14;
+$xo-line-height-context: 20;
+
+$xo-header-height: 5rem !default;
+$xo-sidebar-width: 15rem !default;
+
+$xo-main-color: #4c4c4c !default;
+$xo-text-color: #eee !default;
+$xo-text-color-hover: #444 !default;
+$xo-background-color: #363636;
+$xo-card-background-color: #4c4c4c !default;
+$xo-divider-color: #aaa !default;
+$xo-card-padding-distance: 0.5rem !default;
+$xo-card-border-color: #3a3a3a;
+$xo-card-border-top-color: #9c9c9c;
+$xo-card-divider-color: #696969;
+
+$xo-font-family: '-apple-system', "Helvetica Neue", "Segoe UI", "Roboto", sans-serif !default;
+$xo-font-size: $xo-font-context * 1px !default;
+$xo-line-height: ($xo-line-height-context / $xo-font-context) !default;
+
+$xo-heading-sizes: (2.6, 2.15, 1.70, 1.25, 1.0, 0.85) !default;
+
+$xo-link-color: $xo-text-color !default;
+$xo-link-text-decoration: none !default;
+$xo-link-hover-color: $xo-text-color-hover !default;
+$xo-link-hover-text-decoration: none !default;
+
+$xo-card-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+/**
+ * Spinner variables
+*/
+$xo-spinner-size: 36px;
+$xo-spinner-color: white;
+$xo-spinner-border-width: 2px;
+$xo-spinner-primary-color: white;
+$xo-spinner-secondary-color: rgba(white, 0.2);
+$xo-spinner-backdrop-color: rgba(black, 0.5);
+$xo-spinner-duration: 1s;

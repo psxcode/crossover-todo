@@ -1,0 +1,18 @@
+# Node Files #
+node_modules/
+
+# Dist #
+dist/
+
+# Coverage #
+coverage/
+
+output/
+compiled/
+.awcache/
+src/app/styles/styles.css
+ts-node
+/**/*.ngfactory.ts
+/**/*.css.ts
+/**/*.css.shim.ts
+dll/

@@ -1,0 +1,20 @@
+@import "../../styles/mixins";
+
+:host {
+
+    @extend %flexbox;
+    @include align-items(center);
+    height: $xo-header-height;
+    padding: 0 1rem;
+    background: $xo-main-color;
+    box-shadow: $xo-card-box-shadow;
+
+  .logo {
+    @include flex(1, 1, 0);
+
+    > img {
+      height: 3rem;
+      width: auto;
+    }
+  }
+}
