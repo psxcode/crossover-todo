@@ -58,4 +58,8 @@ export class DashboardComponent implements AfterViewInit, OnDestroy {
         }
       });
   }
+
+  onAdd(): void {
+    this.store.dispatch(TodoActions.add('New Record', 'Write your description'));
+  }
 }

@@ -62,7 +62,7 @@ export class TodoWidgetComponent implements OnDestroy {
     });
   }
 
-  onTitleEditComplete(): void {
+  onTitleEditApply(): void {
     const value = this.titleRef.nativeElement.value;
     if (this.model.title !== value) {
       this.store.dispatch(TodoActions.edit(Object.assign({}, this.model, {
@@ -72,7 +72,7 @@ export class TodoWidgetComponent implements OnDestroy {
     this.titleEditing = false;
   }
 
-  onDescEditComplete(): void {
+  onDescEditApply(): void {
     const value = this.descRef.nativeElement.value;
     if (this.model.description !== value) {
       this.store.dispatch(TodoActions.edit(Object.assign({}, this.model, {
@@ -80,5 +80,9 @@ export class TodoWidgetComponent implements OnDestroy {
       })));
     }
     this.descEditing = false;
+  }
+
+  onClose(): void {
+    this.store.dispatch(TodoActions.remove(this.model._id));
   }
 }

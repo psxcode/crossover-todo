@@ -14,7 +14,6 @@ export function spliceTodos(todos: ITodo[], index: number, ...insertTodos: ITodo
 }
 
 export function findTodoById(todos: ITodo[], id: string): number {
-  console.log(todos);
   return todos.findIndex((todo: ITodo) => todo._id === id);
 }
 

@@ -7,7 +7,8 @@ import { findTodoById, spliceTodos, isTodoComplete, isTodoIncomplete } from '../
 
 const initialState: ITodoState = {
   complete: [],
-  incomplete: []
+  incomplete: [],
+  editing: null
 };
 
 export function TodoReducer(state = initialState, action: Action): ITodoState {
@@ -21,7 +22,7 @@ export function TodoReducer(state = initialState, action: Action): ITodoState {
       });
     }
 
-    case TodoActions.ADD: {
+    case TodoActions.ADD_SUCCESS: {
       const todo: ITodo = action.payload.todo,
         isComplete: boolean = todo.status === TODO_STATUS_COMPLETE,
         added = isComplete ? {complete: [...state.complete, todo]} :
@@ -30,18 +31,18 @@ export function TodoReducer(state = initialState, action: Action): ITodoState {
       return Object.assign({}, state, added);
     }
 
-    case TodoActions.REMOVE: {
+    case TodoActions.REMOVE_SUCCESS: {
       const id: string = action.payload.id,
         {complete, incomplete}: ITodoState = state,
         indexComplete: number = findTodoById(complete, id),
         indexIncomplete: number = indexComplete < 0 ? findTodoById(incomplete, id) : -1;
 
       if (indexIncomplete < 0 && indexComplete < 0) {
-        throw new Error(`Todo item not found by id: ${id}`);
+        return state;
       }
 
       if (indexComplete >= 0 && indexIncomplete >= 0) {
-        throw new Error(`Todo item found in Complete and Incomplete list with id: ${id}`);
+        return state;
       }
 
       const isComplete: boolean = indexComplete >= 0;
@@ -53,7 +54,7 @@ export function TodoReducer(state = initialState, action: Action): ITodoState {
       return Object.assign({}, state, modified);
     }
 
-    case TodoActions.EDIT: {
+    case TodoActions.EDIT_SUCCESS: {
       const todo: ITodo = action.payload.todo,
         id: string = todo._id,
         {complete, incomplete}: ITodoState = state,
@@ -61,11 +62,11 @@ export function TodoReducer(state = initialState, action: Action): ITodoState {
         indexIncomplete: number = indexComplete < 0 ? findTodoById(incomplete, id) : -1;
 
       if (indexIncomplete < 0 && indexComplete < 0) {
-        throw new Error(`Todo item not found by id: ${id}`);
+        return state;
       }
 
       if (indexComplete >= 0 && indexIncomplete >= 0) {
-        throw new Error(`Todo item found in Complete and Incomplete list with id: ${id}`);
+        return state;
       }
 
       const wasComplete: boolean = indexComplete >= 0,
@@ -102,7 +103,7 @@ export function TodoReducer(state = initialState, action: Action): ITodoState {
       return Object.assign({}, state, modified);
     }
 
-    case TodoActions.REMOVE_ALL: {
+    case TodoActions.CLEAR: {
       return initialState;
     }
 

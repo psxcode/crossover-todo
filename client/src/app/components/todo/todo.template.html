@@ -1,18 +1,18 @@
 <div class="title" [class.edit]="titleEditing">
   <i class="material-icons" (click)="onTitleEdit()">edit</i>
   <input #title
-         (keyup.enter)="onTitleEditComplete()"
-         (blur)="onTitleEditComplete()"
+         (keyup.enter)="onTitleEditApply()"
+         (blur)="onTitleEditApply()"
          (focus)="title.select()">
   <span class="text">{{model.title}}</span>
 </div>
 <div class="desc" [class.edit]="descEditing">
   <i class="material-icons" (click)="onDescEdit()">edit</i>
   <input #desc
-         (keyup.enter)="onDescEditComplete()"
-         (blur)="onDescEditComplete()"
+         (keyup.enter)="onDescEditApply()"
+         (blur)="onDescEditApply()"
          (focus)="desc.select()">
   <span class="text">{{model.description}}</span>
 </div>
 <div class="author"><span>by </span><span class="name">{{author$ | async}}</span></div>
-<div class="close"><i class="material-icons">close</i></div>
+<div class="close" (click)="onClose()"><i class="material-icons">close</i></div>

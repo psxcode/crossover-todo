@@ -24,6 +24,17 @@
     }
   }
 
+  .add {
+    @include flex(0, 0, auto);
+    cursor: pointer;
+
+    color: #919191;
+
+    &:hover {
+      color: #00c5ff;
+    }
+  }
+
   .xo-card-content {
     @extend %flexbox;
     @include flex-direction(column);

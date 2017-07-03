@@ -88,9 +88,10 @@ export class DataService {
     return this.userSession$.switchMap((session: string) => {
       const req = `${API_BASE_URL}/user/logout?sessionId=${session}`;
 
-      return this.http.get(req, REQ_OPTIONS)
-        .map(toJson)
-        .map(toStatusSuccess);
+      return session ? this.http.get(req, REQ_OPTIONS)
+          .map(toJson)
+          .map(toStatusSuccess) :
+        Observable.of(false);
     });
   }
 
@@ -98,9 +99,10 @@ export class DataService {
     return this.userSession$.switchMap((session: string) => {
       const req = `${API_BASE_URL}/todos?sessionId=${session}&skip=${skip}&limit=${limit}`;
 
-      return this.http.get(req, REQ_OPTIONS)
-        .map(toJson)
-        .map(toTodos);
+      return session ? this.http.get(req, REQ_OPTIONS)
+          .map(toJson)
+          .map(toTodos) :
+        Observable.of([]);
     });
   }
 
@@ -113,25 +115,27 @@ export class DataService {
           status: TODO_STATUS_NOT_COMPLETE
         };
 
-      return this.http.put(req, body, REQ_OPTIONS)
-        .map(toJson)
-        .map(toTodo);
+      return session ? this.http.put(req, body, REQ_OPTIONS)
+          .map(toJson)
+          .map(toTodo) :
+        Observable.empty();
     });
   }
 
-  editTodo(id: string, title: string, description: string, isComplete: boolean): Observable<ITodo> {
+  editTodo(todo: ITodo): Observable<ITodo> {
     return this.userSession$.switchMap((session: string) => {
       const req = `${API_BASE_URL}/todo?sessionId=${session}`,
         body = {
-          id,
-          title,
-          description,
-          status: isComplete ? TODO_STATUS_COMPLETE : TODO_STATUS_NOT_COMPLETE
+          id: todo._id,
+          title: todo.title,
+          description: todo.description,
+          status: todo.status
         };
 
-      return this.http.put(req, body, REQ_OPTIONS)
-        .map(toJson)
-        .map(toTodo);
+      return session ? this.http.put(req, body, REQ_OPTIONS)
+          .map(toJson)
+          .map(toTodo) :
+        Observable.empty();
     });
   }
 
@@ -140,9 +144,10 @@ export class DataService {
       const req = `${API_BASE_URL}/todo?sessionId=${session}`,
         body = {id};
 
-      return this.http.delete(req, new RequestOptions({headers: REQ_HEADERS, body}))
-        .map(toJson)
-        .map(toStatusSuccess);
+      return session ? this.http.delete(req, new RequestOptions({headers: REQ_HEADERS, body}))
+          .map(toJson)
+          .map(toStatusSuccess) :
+        Observable.of(false);
     });
   }
 }

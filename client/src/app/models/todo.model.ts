@@ -10,5 +10,11 @@ export interface ITodo {
   status: string;
 }
 
+export interface IEditingTodo {
+  id: string;
+  editingTitle: boolean;
+  editingDesc: boolean;
+}
+
 export const TODO_STATUS_COMPLETE = 'completed';
 export const TODO_STATUS_NOT_COMPLETE = 'notCompleted';

@@ -14,9 +14,18 @@ export class TodoActions {
 
   static ADD = '[Todo] Add';
 
-  static add(todo: ITodo): Action {
+  static add(title: string, desc: string): Action {
     return {
       type: TodoActions.ADD,
+      payload: {title, desc}
+    };
+  }
+
+  static ADD_SUCCESS = '[Todo] Add Success';
+
+  static addSuccess(todo: ITodo): Action {
+    return {
+      type: TodoActions.ADD_SUCCESS,
       payload: {todo}
     };
   }
@@ -30,6 +39,15 @@ export class TodoActions {
     };
   }
 
+  static REMOVE_SUCCESS = '[Todo] Remove Success';
+
+  static removeSuccess(id: string): Action {
+    return {
+      type: TodoActions.REMOVE_SUCCESS,
+      payload: {id}
+    };
+  }
+
   static EDIT = '[Todo] Edit';
 
   static edit(todo: ITodo): Action {
@@ -39,11 +57,28 @@ export class TodoActions {
     };
   }
 
-  static REMOVE_ALL = '[Todo] Remove All';
+  static EDIT_SUCCESS = '[Todo] Edit Success';
 
-  static removeAll(): Action {
+  static editSuccess(todo: ITodo): Action {
     return {
-      type: TodoActions.REMOVE_ALL
+      type: TodoActions.EDIT_SUCCESS,
+      payload: {todo}
+    };
+  }
+
+  static CLEAR = '[Todo] Remove All';
+
+  static clear(): Action {
+    return {
+      type: TodoActions.CLEAR
+    };
+  }
+
+  static START_INLINE_EDIT = '[Todo] Start Inline Edit';
+
+  static startInlineEdit(): Action {
+    return {
+      type: TodoActions.CLEAR
     };
   }
 }
