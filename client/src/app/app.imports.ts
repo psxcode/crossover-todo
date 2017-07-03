@@ -7,7 +7,6 @@ import { rootReducer } from './reducers';
 import { UserEffects, ScreenEffects } from './effects';
 
 export const APP_IMPORTS = [
-  ReactiveFormsModule,
   EffectsModule.run(UserEffects),
   EffectsModule.run(ScreenEffects),
   RouterStoreModule.connectRouter(),

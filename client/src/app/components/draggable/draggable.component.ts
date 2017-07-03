@@ -27,21 +27,10 @@ export class DraggableDirective implements OnInit {
   @Input() dragHandleClass = 'drag-handle';
   @Input() dragClass = 'drag-border';
 
-  @Input()
-  set dragEnabled(value: boolean) {
-    this._dragEnabled = value;
-    this.applyDragHandleClass();
-  };
-
-  get dragEnabled() {
-    return this._dragEnabled;
-  }
-
   @Output() onDragStart: EventEmitter<any> = new EventEmitter();
   @Output() onDragEnd: EventEmitter<any> = new EventEmitter();
 
   mouseOverElement: any;
-  _dragEnabled = true;
 
   constructor(private store: Store<IAppState>,
               private el: ElementRef) {
@@ -91,19 +80,15 @@ export class DraggableDirective implements OnInit {
 
   allowDrag(): boolean {
     if (this.dragHandle) {
-      return matches(this.mouseOverElement, this.dragHandle) && this.dragEnabled;
+      return matches(this.mouseOverElement, this.dragHandle);
     } else {
-      return this.dragEnabled;
+      return true;
     }
   }
 
   applyDragHandleClass(): void {
     const dragElement: Element = this.getDragHandleElement();
-    if (this.dragEnabled) {
-      dragElement.classList.add(this.dragHandleClass);
-    } else {
-      dragElement.classList.remove(this.dragHandleClass);
-    }
+    dragElement.classList.add(this.dragHandleClass);
   }
 
   getDragHandleElement(): Element {

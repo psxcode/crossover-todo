@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { IAppState } from '../state';
 import { ScreenActions } from '../actions';
 import { urlStripQueryParams, urlLastChunk, toUserValid } from "../utils";
-import { ROUTE_DEFAULT, ROUTE_LOGIN } from '../app.routing';
 
 @Injectable()
 export class RoutingGuardService implements CanActivate {

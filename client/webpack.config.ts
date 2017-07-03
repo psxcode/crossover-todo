@@ -84,10 +84,10 @@ const COPY_FOLDERS = [
   {from: 'src/app/styles/styles.css'}
 ];
 
-if (!DEV_SERVER) {
-  COPY_FOLDERS.unshift({from: 'src/index.html'});
-} else {
+if (DEV_SERVER) {
   COPY_FOLDERS.push({from: 'dll'});
+} else {
+  COPY_FOLDERS.unshift({from: 'src/index.html'});
 }
 
 const commonConfig = function webpackConfig(): WebpackConfig {
@@ -182,14 +182,14 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   PROD ? config.devtool = PROD_SOURCE_MAPS : config.devtool = DEV_SOURCE_MAPS;
   config.plugins = [getAotPlugin('client', PROD)];
 
-  if (PROD) {
+  /*if (PROD) {
     config.plugins.push(
       new UglifyJsPlugin({
         beautify: false,
         comments: false
       })
     );
-  }
+  }*/
 
   if (DLL) {
     config.entry = {
@@ -219,21 +219,21 @@ const clientConfig = function webpackConfig(): WebpackConfig {
     };
   }
 
-  if (!DLL) {
-    config.output = {
-      path: root('dist'),
-      filename: 'index.js'
-    };
-  } else {
+  if (DLL) {
     config.output = {
       path: root('dll'),
       filename: '[name].dll.js',
       library: '[name]'
     };
+  } else {
+    config.output = {
+      path: root('dist'),
+      filename: 'index.js'
+    };
   }
 
   config.devServer = {
-    contentBase: './src',
+    contentBase: PROD ? './compiled' : './src',
     port: DEV_PORT,
     historyApiFallback: {
       disableDotRule: true,
@@ -260,7 +260,6 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   };
 
   return config;
-
 }();
 
 const defaultConfig = {

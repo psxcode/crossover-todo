@@ -4,6 +4,5 @@
     "entryModule": "./app/browser.app.module#BrowserAppModule"
   },
   "exclude": [
-    "./server.aot.ts"
   ]
 }

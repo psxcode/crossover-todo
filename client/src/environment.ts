@@ -6,7 +6,7 @@ import { enableProdMode, ApplicationRef } from '@angular/core';
 // https://github.com/angular/angular/blob/86405345b781a9dc2438c0fbe3e9409245647019/TOOLS_JS.md
 let _decorateModuleRef = function identity<T>(value: T): T { return value; };
 
-if ('production' === ENV) {
+if ('PROD' === ENV) {
   // Production
   // disableDebugTools();
   enableProdMode();

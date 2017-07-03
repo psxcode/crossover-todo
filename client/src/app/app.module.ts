@@ -5,20 +5,18 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
 import { APP_DECLARATIONS } from './app.declarations';
-import { APP_ENTRY_COMPONENTS } from './app.entry-components';
 import { APP_IMPORTS } from './app.imports';
 import { APP_PROVIDERS } from './app.providers';
 
 import { routes } from './app.routing';
 
-import { AppComponent } from './components';
+import { AppComponent } from './components/app/app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     APP_DECLARATIONS
   ],
-  entryComponents: [APP_ENTRY_COMPONENTS],
   imports: [
     CommonModule,
     DEV_SERVER ? [BrowserAnimationsModule] : [],
@@ -30,8 +28,4 @@ import { AppComponent } from './components';
   exports: [AppComponent],
   providers: [APP_PROVIDERS]
 })
-
-export class AppModule {
-  constructor() {
-  }
-}
+export class AppModule {}
