@@ -69,7 +69,7 @@ export class DataService {
     this.userSession$ = store.select(toUserSession);
   }
 
-  login(username: string, password: string): Observable<IUserState> {
+  login(username: string = '', password: string = ''): Observable<IUserState> {
     const req = `${API_BASE_URL}/user/auth`,
       post = {
         username,

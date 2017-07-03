@@ -89,10 +89,7 @@ html, body {
 
 body {
   background-color: $xo-background-color;
-}
-
-input {
-  border: solid thin $xo-divider-color;
+  overflow: hidden;
 }
 
 .xo-card {

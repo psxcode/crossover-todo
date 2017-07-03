@@ -49,7 +49,7 @@ export class ScreenEffects {
       return ScreenActions.unsetScreenSuccess();
     });
 
-  @Effect() navigate = this.actions$
+  @Effect() navigate$ = this.actions$
     .ofType(ScreenActions.NAVIGATE)
     .map(toPayload)
     .switchMap(payload => Observable.concat(

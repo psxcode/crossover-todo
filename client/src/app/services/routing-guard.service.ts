@@ -17,9 +17,9 @@ export class RoutingGuardService implements CanActivate {
 
     const userValid$ = store.select(toUserValid);
 
-    /* redirect */
+    /*redirect*/
     userValid$.subscribe((valid: boolean) => {
-      store.dispatch(ScreenActions.navigate(valid ? ROUTE_DEFAULT : ROUTE_LOGIN));
+      store.dispatch(ScreenActions.navigate(valid ? '' : 'login'));
     });
 
     this.userValid$ = userValid$;
@@ -31,8 +31,10 @@ export class RoutingGuardService implements CanActivate {
     // strip query params
     const url: string = urlLastChunk(urlStripQueryParams(state.url));
 
-    return this.userValid$
-      .map((valid: boolean) => valid ? (url !== ROUTE_LOGIN) : (url === ROUTE_LOGIN))
+    // return Observable.of(true);
+
+    return this.store.select(toUserValid)
+      .map((valid: boolean) => valid ? (url !== 'login') : (url === 'login'))
       .do((can: boolean) => {
         if (can) {
           this.store.dispatch(ScreenActions.unsetScreen());

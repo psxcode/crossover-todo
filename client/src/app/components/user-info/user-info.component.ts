@@ -1,17 +1,14 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
-import { IAppState, IUserState } from '../../state';
+import { IAppState } from '../../state';
 import { IUser } from '../../models';
-import { toUserValid, toUserData, forward } from '../../utils';
+import { UserActions } from '../../actions';
+import { toUserValid, toUserData } from '../../utils';
 
 function toFirstname(user: IUser): string {
   return user.firstname;
-}
-
-function toLastname(user: IUser): string {
-  return user.lastname
 }
 
 function toAvatar(user: IUser): string {
@@ -26,7 +23,6 @@ function toAvatar(user: IUser): string {
 export class UserInfoWidgetComponent implements OnDestroy {
 
   firstname$: Observable<string> = null;
-  lastname$: Observable<string> = null;
   userValid$: Observable<boolean> = null;
   avatar$: Observable<string> = null;
   showAvatar$: Observable<boolean> = null;
@@ -35,7 +31,6 @@ export class UserInfoWidgetComponent implements OnDestroy {
   constructor(private store: Store<IAppState>) {
     const userData$ = store.select(toUserData),
       firstname$ = userData$.map(toFirstname),
-      lastname$ = userData$.map(toLastname),
       userValid$ = store.select(toUserValid),
 
       showAvatar$ = new BehaviorSubject<boolean>(false),
@@ -46,10 +41,13 @@ export class UserInfoWidgetComponent implements OnDestroy {
         .do(() => showAvatar$.next(true));
 
     this.firstname$ = firstname$;
-    this.lastname$ = lastname$;
     this.userValid$ = userValid$;
     this.avatar$ = avatar$;
     this.showAvatar$ = showAvatar$.asObservable();
+  }
+
+  logout(): void {
+    this.store.dispatch(UserActions.logout());
   }
 
   ngOnDestroy(): void {

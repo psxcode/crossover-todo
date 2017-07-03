@@ -19,5 +19,5 @@ export function toUserValid(state: IAppState): boolean {
 
 export function randomAvatar(): string {
   const i = Math.floor((Math.random() * 99) + 0.5);
-  return `http://randomuser.me/api/thumb/men/${i}.jpg`;
+  return `https://randomuser.me/api/portraits/thumb/men/${i}.jpg`;
 }

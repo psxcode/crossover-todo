@@ -6,11 +6,9 @@ import { routerReducer, RouterState } from '@ngrx/router-store';
 
 import { UserReducer } from './user.reducer';
 import { ScreenReducer } from './screen.reducer';
-import { BootstrapReducer } from './bootstrap.reducer';
 
 export const syncReducers = {
   router: routerReducer,
-  bootstrap: BootstrapReducer,
   screen: ScreenReducer,
   user: UserReducer,
 };

@@ -1,6 +1,6 @@
-<div class="info" [class.visible]="userValid$ | async">
-    <div class="name">Welcome {{firstname$ | async}} {{lastname$ | async}}</div>
-    <div class="detail">Logged in since: </div>
+<div class="info">
+    <div class="name">Welcome {{firstname$ | async}}</div>
+    <div class="detail" *ngIf="userValid$ | async" (click)="logout()">Logout</div>
 </div>
 <div class="avatar" [class.visible]="showAvatar$ | async">
     <img [src]="(avatar$ | async)">

@@ -4,28 +4,28 @@ import { Actions, Effect, toPayload } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 
 import { DataService } from '../services';
-import { BootstrapActions, UserActions } from '../actions';
+import { UserActions } from '../actions';
 import { IUser } from '../models';
 import { IUserState } from '../state';
 
 @Injectable()
-export class BootstrapEffects {
+export class UserEffects {
 
   constructor(private actions$: Actions,
               private dataService: DataService) {
   }
 
   @Effect() login$ = this.actions$
-    .ofType(BootstrapActions.LOGIN)
+    .ofType(UserActions.LOGIN)
     .map(toPayload)
-    .switchMap(payload => this.dataService.login(payload.username, payload.password))
+    .switchMap(payload => this.dataService.login(payload.username, payload.password)
+      .catch((e) => Observable.of({})))
     .map((userState: IUserState) => userState.session ?
       UserActions.setUser(userState.user, userState.session) :
-      BootstrapActions.logout('Login credentials are incorrect.'));
+      UserActions.loginFailed('Login credentials are incorrect.'));
 
   @Effect() logout$ = this.actions$
-    .ofType(BootstrapActions.LOGOUT)
-    .map(toPayload)
-    .switchMap(() => this.dataService.logout())
+    .ofType(UserActions.LOGOUT)
+    .do(() => this.dataService.logout())
     .map(() => UserActions.unset());
 }

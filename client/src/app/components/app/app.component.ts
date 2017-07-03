@@ -2,7 +2,6 @@ import { Component, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 
-import { BootstrapActions, ScreenActions } from '../../actions';
 import { IAppState } from '../../state';
 
 @Component({
@@ -18,8 +17,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-
-    this.store.dispatch(BootstrapActions.bootstrap());
   }
 
   ngOnDestroy(): void {

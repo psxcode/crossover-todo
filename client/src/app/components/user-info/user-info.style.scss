@@ -18,6 +18,7 @@
       width: 3rem;
       height: 3rem;
       border-radius: 50%;
+      box-shadow: $xo-card-box-shadow;
     }
   }
 
@@ -27,22 +28,24 @@
     overflow: inherit;
     text-align: right;
 
-    opacity: 0;
-    transition: opacity 0.6s;
-    &.visible {
-      opacity: 1;
-    }
-
     > .name {
       font-size: 1rem;
       text-overflow: ellipsis;
       overflow: inherit;
+      text-transform: capitalize;
     }
 
     > .detail {
+      color: #828282;
       font-size: 0.8rem;
       text-overflow: ellipsis;
       overflow: inherit;
+      cursor: pointer;
+
+      &:hover {
+        color: #00c5ff;
+        text-decoration: underline;
+      }
     }
   }
 }

@@ -11,11 +11,16 @@ const initialState: IUserState = {
 
 export function UserReducer(state = initialState, action: Action): IUserState {
   switch (action.type) {
+
     case UserActions.SET: {
       return Object.assign({}, state, action.payload);
     }
 
     case UserActions.UNSET: {
+      return initialState;
+    }
+
+    case UserActions.LOGIN_FAILED: {
       return initialState;
     }
 

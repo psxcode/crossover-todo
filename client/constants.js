@@ -4,7 +4,7 @@ const ip = require('ip');
 
 exports.HOST = ip.address();
 exports.DEV_PORT = 3001;
-exports.API_HOST = ip.address();
+exports.API_HOST = 'localhost';
 exports.API_PORT = 3000;
 exports.API_BASE_URL = `http://${exports.API_HOST}:${exports.API_PORT}`;
 

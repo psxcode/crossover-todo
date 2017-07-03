@@ -1,2 +1,2 @@
-export * from './bootstrap.effects';
+export * from './user.effects';
 export * from './screen.effects';

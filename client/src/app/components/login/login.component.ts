@@ -1,31 +1,31 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IAppState } from '../../state';
-import { BootstrapActions, ScreenActions } from '../../actions';
+import { UserActions, ScreenActions } from '../../actions';
 
 @Component({
-  selector: 'hrz-login',
+  selector: 'xo-login',
   templateUrl: './login.template.html',
-  styleUrls: ['./login.style.css']
+  styleUrls: ['./login.style.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
-  private message$: Observable<string> = null;
+  message$: Observable<string> = null;
 
   constructor(private store: Store<IAppState>) {
   }
 
   ngOnInit(): void {
-    this.message$ = this.store.select((state: IAppState) => state.bootstrap.message).distinctUntilChanged();
+    // this.message$ = this.store.select((state: IAppState) => state.bootstrap.message);
   }
 
   ngAfterViewInit(): void {
-    this.store.dispatch(ScreenActions.setScreen('hrz-login'));
+    this.store.dispatch(ScreenActions.setScreen('xo-login'));
   }
 
   login(username: string, password: string): void {
-    this.store.dispatch(BootstrapActions.login(username, password));
+    this.store.dispatch(UserActions.login(username, password));
   }
 }
