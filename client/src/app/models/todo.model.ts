@@ -8,8 +8,7 @@ export interface ITodo {
   title: string;
   description: string;
   status: string;
-  author: ITodoAuthor;
 }
 
-export const TODO_STATUS_COMPLETE = 'complete';
-export const TODO_STATUS_NOT_COMPLETE = 'notComplete';
+export const TODO_STATUS_COMPLETE = 'completed';
+export const TODO_STATUS_NOT_COMPLETE = 'notCompleted';

@@ -27,6 +27,19 @@
   .xo-card-content {
     @extend %flexbox;
     @include flex-direction(column);
+
+    > *:not(:first-child) {
+      margin-top: 1rem;
+    }
+
+    &.drag-hint-border {
+      border: dashed thin white;
+    }
+
+    &.drag-over-border {
+      border-color: green;
+      background-color: rgba(green, 0.2);
+    }
   }
 
   .h-divider {

@@ -38,3 +38,7 @@ export function urlLastChunk(url: string): string {
 export function forward(val: any) {
   return val;
 }
+
+export function stripHtmlTags(str: string): string {
+  return str.replace(/<(?:.|\n)*?>/gm, '');
+}

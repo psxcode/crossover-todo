@@ -5,6 +5,6 @@
 </div>
 <div class="element">
   <i class="material-icons">lock</i>
-  <input type="password" (keyup.enter)="login(username.value, password.value)" #password placeholder="password" autocomplete="off">
+  <input type="password" #password (keyup.enter)="login()" placeholder="password" autocomplete="off">
 </div>
-<button (click)="login(username.value, password.value)" class="button">Login</button>
+<button (click)="login()" class="button">Login</button>

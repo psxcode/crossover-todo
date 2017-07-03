@@ -3,7 +3,16 @@
     <div class="xo-card-header">
       <div class="title">In Progress</div>
     </div>
-    <div class="xo-card-content"></div>
+    <div class="xo-card-content"
+         droppable
+         [dropScope]="'incomplete'"
+         (onDrop)="onIncompleteDrop($event)">
+      <xo-todo *ngFor="let todo of incomplete$ | async"
+               draggable
+               [dragData]="todo"
+               [dragScope]="'complete'"
+               [model]="todo"></xo-todo>
+    </div>
     <div class="xo-card-footer"></div>
   </div>
 
@@ -13,7 +22,16 @@
     <div class="xo-card-header">
       <div class="title">Completed</div>
     </div>
-    <div class="xo-card-content"></div>
+    <div class="xo-card-content"
+         droppable
+         [dropScope]="'complete'"
+         (onDrop)="onCompleteDrop($event)">
+      <xo-todo *ngFor="let todo of complete$ | async"
+               draggable
+               [dragData]="todo"
+               [dragScope]="'incomplete'"
+               [model]="todo"></xo-todo>
+    </div>
     <div class="xo-card-footer"></div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -12,6 +12,9 @@ import { UserActions, ScreenActions } from '../../actions';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('username') usernameRef: ElementRef;
+  @ViewChild('password') passwordRef: ElementRef;
+
   message$: Observable<string> = null;
 
   constructor(private store: Store<IAppState>) {
@@ -22,10 +25,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.usernameRef.nativeElement.focus();
     this.store.dispatch(ScreenActions.setScreen('xo-login'));
   }
 
-  login(username: string, password: string): void {
-    this.store.dispatch(UserActions.login(username, password));
+  login(): void {
+    this.store.dispatch(UserActions
+      .login(this.usernameRef.nativeElement.value, this.passwordRef.nativeElement.value));
   }
 }

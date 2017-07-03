@@ -1,0 +1,40 @@
+@import "../../styles/mixins";
+
+:host {
+
+  @extend %flexbox;
+  @include flex-direction(column);
+  @include flex(0, 0, auto);
+
+  padding: 1.2rem;
+  border-radius: 2px;
+  box-shadow: $xo-card-box-shadow;
+
+  color: $xo-text-color;
+  background-color: #818181;
+
+  > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  > .title {
+    font-size: 1.2rem;
+  }
+
+  > .desc {
+    font-size: 0.8rem;
+  }
+
+  > .author {
+    font-size: 0.7rem;
+    text-align: right;
+
+    > .name {
+      text-transform: capitalize;
+    }
+  }
+
+  &.drag-border {
+    opacity: 0.3;
+  }
+}

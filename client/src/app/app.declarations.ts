@@ -3,6 +3,9 @@ import {
   HeaderComponent,
   UserInfoWidgetComponent,
   LoginComponent,
+  TodoWidgetComponent,
+  DraggableDirective,
+  DroppableDirective,
 } from './components';
 
 export const APP_DECLARATIONS = [
@@ -10,4 +13,7 @@ export const APP_DECLARATIONS = [
   HeaderComponent,
   UserInfoWidgetComponent,
   LoginComponent,
+  TodoWidgetComponent,
+  DraggableDirective,
+  DroppableDirective
 ];

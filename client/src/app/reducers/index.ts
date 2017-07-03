@@ -6,11 +6,15 @@ import { routerReducer, RouterState } from '@ngrx/router-store';
 
 import { UserReducer } from './user.reducer';
 import { ScreenReducer } from './screen.reducer';
+import { TodoReducer } from './todo.reducer';
+import { DragReducer } from './drag.reducer';
 
 export const syncReducers = {
   router: routerReducer,
   screen: ScreenReducer,
   user: UserReducer,
+  todo: TodoReducer,
+  drag: DragReducer,
 };
 
 function deepCombineReducers(allReducers: any): ActionReducer<any> {

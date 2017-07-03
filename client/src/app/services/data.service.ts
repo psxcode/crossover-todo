@@ -5,7 +5,7 @@ import { Observable, AsyncSubject, Subject } from 'rxjs';
 
 import { IAppState, IUserState } from '../state';
 import { ITodo, TODO_STATUS_COMPLETE, TODO_STATUS_NOT_COMPLETE } from '../models';
-import { toUserSession, md5, randomAvatar } from '../utils';
+import { toUserSession, md5, randomAvatar, stripHtmlTags } from '../utils';
 
 interface IResponse {
   status: string;
@@ -43,7 +43,10 @@ function toStatusSuccess(res: IResponse): boolean {
 }
 
 function toTodos(res: ITodosResponse): ITodo[] {
-  return res.data;
+  return (res.data || [])
+    .map((todo: ITodo) => Object.assign(todo, {
+      description: stripHtmlTags(todo.description)
+    }));
 }
 
 function toTodo(res: ITodoResponse): ITodo {
