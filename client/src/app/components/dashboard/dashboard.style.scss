@@ -28,6 +28,8 @@
     @extend %flexbox;
     @include flex-direction(column);
 
+    overflow-y: auto;
+
     > *:not(:first-child) {
       margin-top: 1rem;
     }

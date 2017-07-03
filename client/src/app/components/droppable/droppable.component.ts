@@ -57,8 +57,6 @@ export class DroppableDirective implements OnInit, OnDestroy {
 
   @HostListener('dragenter', ['$event'])
   dragEnter(e) {
-    console.log('DRAG_ENTER');
-
     e.preventDefault();
     e.stopPropagation();
     this.onDragEnter.emit(e);
@@ -75,8 +73,6 @@ export class DroppableDirective implements OnInit, OnDestroy {
 
   @HostListener('dragleave', ['$event'])
   dragLeave(e) {
-    console.log('DRAG_LEAVE');
-
     e.preventDefault();
 
     this.el.nativeElement.classList.remove(this.dragOverClass);
@@ -85,8 +81,6 @@ export class DroppableDirective implements OnInit, OnDestroy {
 
   @HostListener('drop', ['$event'])
   drop(e) {
-    console.log('DROP');
-
     e.preventDefault();
     e.stopPropagation();
 
