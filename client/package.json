@@ -8,14 +8,14 @@
     "url": "git+https://github.com/qdouble/angular-webpack2-starter.git"
   },
   "scripts": {
-    "pretest": "npm run lint && npm run sass",
-    "pretest:once": "npm run lint && npm run sass",
+    "cover:html": "remap-istanbul --input ./coverage/json/coverage-final.json --output ./coverage/html --type html -e daterangepicker.js",
+    "cover:lcov": "remap-istanbul --input ./coverage/json/coverage-final.json --output ./coverage/json/lcov.info --type lcovonly",
+    "pretest": "npm run sass",
+    "pretest:once": "npm run sass",
     "test:once": "karma start",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webpack": "webpack",
-    "tslint": "tslint --type-check --project tsconfig.json",
-    "lint": "npm run tslint \"src/app/**/*.ts\" ",
     "clean": "npm run clean:compile && npm run rimraf -- node_modules doc typings coverage dist .awcache dll",
     "clean:dist": "npm run rimraf -- dist .awcache",
     "clean:dll": "npm run rimraf -- dll",

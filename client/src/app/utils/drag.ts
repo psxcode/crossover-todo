@@ -1,5 +1,3 @@
-import { ElementRef } from '@angular/core';
-
 export function matches(element: any, selectorName: string): boolean {
 
   const proto: any = Element.prototype,

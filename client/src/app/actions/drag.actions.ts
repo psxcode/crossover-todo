@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { ITodo } from '../models';
 
 export class DragActions {
 

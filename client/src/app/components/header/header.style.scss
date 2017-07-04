@@ -10,11 +10,25 @@
     box-shadow: $xo-card-box-shadow;
 
   .logo {
-    @include flex(1, 1, 0);
+    @include flex(0, 0, auto);
 
     > img {
       height: 3rem;
       width: auto;
+    }
+  }
+
+  .todo-logo {
+    @include flex(1, 1, 0);
+
+    text-align: center;
+
+    > img {
+      height: 3rem;
+      width: auto;
+
+      filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.7));
+      image-rendering: optimize-contrast;
     }
   }
 }

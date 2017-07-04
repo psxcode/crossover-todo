@@ -13,17 +13,17 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const EXCLUDE_SOURCE_MAPS = require('../constants').EXCLUDE_SOURCE_MAPS;
-const MY_TEST_RULES = require('../constants').MY_TEST_RULES;
-const MY_TEST_PLUGINS = require('../constants').MY_TEST_PLUGINS;
-const STORE_DEV_TOOLS = require('../constants').STORE_DEV_TOOLS;
-
-const API_CONTEXT = require('../constants').API_CONTEXT;
-const API_URL_DEV = require('../constants').API_URL_DEV;
-const API_URL_INT = require('../constants').API_URL_INT;
-const API_URL_QA = require('../constants').API_URL_QA;
-const API_URL_UAT = require('../constants').API_URL_UAT;
-const API_URL_PROD = require('../constants').API_URL_PROD;
+const {
+  DEV_PORT,
+  API_HOST,
+  API_PORT,
+  API_BASE_URL,
+  EXCLUDE_SOURCE_MAPS,
+  HOST,
+  DEV_SERVER_WATCH_OPTIONS,
+  DEV_SOURCE_MAPS,
+  PROD_SOURCE_MAPS
+} = require('../constants');
 
 const COPY_FOLDERS = [
     {from: 'src/assets', to: 'assets'},
@@ -33,32 +33,6 @@ const COPY_FOLDERS = [
 ];
 
 const EVENT = process.env.npm_lifecycle_event || '';
-const DEV_SERVER = EVENT.includes('start');
-const BUILD_DEV = EVENT.includes(':dev');
-const BUILD_DEBUG = EVENT.includes(':dbg');
-const BUILD_RELEASE = EVENT.includes(':rls');
-const AOT = BUILD_RELEASE;
-const IS_API_PROD = EVENT.includes(':prod');
-const IS_API_INT = EVENT.includes(':int');
-const IS_API_QA = EVENT.includes(':qa');
-const IS_API_UAT = EVENT.includes(':uat');
-
-const BUILD_TYPE_TXT = BUILD_RELEASE ? 'RELEASE' : BUILD_DEBUG ? 'DEBUG' : (BUILD_DEV || DEV_SERVER) ? 'DEVELOPMENT' : '';
-
-const API_URL = (IS_API_PROD ? API_URL_PROD :
-        IS_API_INT ? API_URL_INT :
-            IS_API_QA ? API_URL_QA :
-                IS_API_UAT ? API_URL_UAT :
-                    API_URL_DEV) + API_CONTEXT;
-
-const API_TYPE_TXT = IS_API_PROD ? 'PROD' : IS_API_INT ? 'INT' : IS_API_QA ? 'QA' : IS_API_UAT ? 'UAT' : '';
-
-
-
-
-
-
-
 
 /**
  * Webpack configuration
@@ -178,8 +152,7 @@ module.exports = {
             }, {
                 test: /\.scss$/,
                 loaders: ['to-string-loader', 'css-loader?url=false', 'sass-loader']
-            },
-            ...MY_TEST_RULES
+            }
         ]
     },
 
@@ -204,17 +177,12 @@ module.exports = {
          */
         // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
         new DefinePlugin({
-            AOT: false,
-            ENV: JSON.stringify('test'),
-            HMR: false,
-            PORT: 3000,
-            HOST: JSON.stringify('localhost'),
-            STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
-            BUILD: JSON.stringify(BUILD_TYPE_TXT),
-            API_URL: JSON.stringify(API_URL),
+            ENV: JSON.stringify('TEST'),
+            API_HOST: JSON.stringify(API_HOST),
+            API_PORT: JSON.stringify(API_PORT),
+            API_BASE_URL: JSON.stringify(API_BASE_URL)
         }),
-        new CopyWebpackPlugin(COPY_FOLDERS, {ignore: ['*dist_root/*']}),
-        new CopyWebpackPlugin([{from: 'src/assets/dist_root'}]),
+        new CopyWebpackPlugin(COPY_FOLDERS),
         new NamedModulesPlugin(),
         new webpack.LoaderOptionsPlugin({
             options: {
@@ -224,8 +192,7 @@ module.exports = {
                     resourcePath: root('./src')
                 }
             }
-        }),
-        ...MY_TEST_PLUGINS
+        })
     ],
 
     /**

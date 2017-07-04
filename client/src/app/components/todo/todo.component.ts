@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 import { IAppState } from '../../state';
-import { ITodo, TODO_STATUS_NOT_COMPLETE, IUser } from '../../models';
+import { TODO_STATUS_NOT_COMPLETE, IUser } from '../../models';
+import { ITodo } from '../../models/todo.model';
 import { TodoActions } from '../../actions';
 import { toUserData } from '../../utils';
 

@@ -1,13 +1,13 @@
-<div class="title" [class.edit]="titleEditing">
-  <i class="material-icons" (click)="onTitleEdit()">edit</i>
+<div class="title" [class.edit]="titleEditing" (click)="onTitleEdit()">
+  <i class="material-icons">edit</i>
   <input #title
          (keyup.enter)="onTitleEditApply()"
          (blur)="onTitleEditApply()"
          (focus)="title.select()">
   <span class="text">{{model.title}}</span>
 </div>
-<div class="desc" [class.edit]="descEditing">
-  <i class="material-icons" (click)="onDescEdit()">edit</i>
+<div class="desc" [class.edit]="descEditing" (click)="onDescEdit()">
+  <i class="material-icons">edit</i>
   <input #desc
          (keyup.enter)="onDescEditApply()"
          (blur)="onDescEditApply()"

@@ -105,7 +105,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
         loaders: !DLL && !DEV_SERVER ? ['@ngtools/webpack'] : [
           'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
           'angular2-template-loader',
-          'angular-router-loader?loader=system&genDir=compiled&aot=' + PROD
+          'angular-router-loader?loader=system&genDir=compiled&aot=' + false
         ],
         exclude: [/\.(spec|e2e|d)\.ts$/]
       },
@@ -123,7 +123,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
     new ProgressPlugin(),
     new CheckerPlugin(),
     new DefinePlugin(CONSTANTS),
-    new NamedModulesPlugin()
+    new NamedModulesPlugin(),
   ];
 
   if (DEV_SERVER) {
@@ -180,16 +180,16 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   config.cache = true;
   config.target = 'web';
   PROD ? config.devtool = PROD_SOURCE_MAPS : config.devtool = DEV_SOURCE_MAPS;
-  config.plugins = [getAotPlugin('client', PROD)];
+  config.plugins = [getAotPlugin('client', false)];
 
-  /*if (PROD) {
+  if (PROD) {
     config.plugins.push(
       new UglifyJsPlugin({
         beautify: false,
         comments: false
       })
     );
-  }*/
+  }
 
   if (DLL) {
     config.entry = {
