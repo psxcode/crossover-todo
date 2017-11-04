@@ -1,4 +1,6 @@
 # xo_todo
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/psxcode/crossover-todo.svg)](https://greenkeeper.io/)
 Application has been developed using Angular 4 and Typescript. 
 Internal state managed with `@ngrx Store/Effects`.
 Graphical look and feel done with `CSS3` and `Sass`.  
